@@ -12,7 +12,7 @@ public class SpawnBehaviour : MonoBehaviour
     public GameObject[] powerUps;
     private bool _isPlayerAlive = true;
     [SerializeField]
-    private float _spawnRateEnemy = 1.5f;
+    private float _spawnRateEnemy = 2f;
    
     void Start()
     {

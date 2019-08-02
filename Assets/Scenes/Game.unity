@@ -1965,7 +1965,7 @@ MonoBehaviour:
   - {fileID: 4358381800991991770, guid: 296eba7c6762d2a4f9f147db02d752aa, type: 3}
   - {fileID: 1119102119523011750, guid: 51fc252c0527fed46bfef76c26a7018f, type: 3}
   - {fileID: 4136861002810596666, guid: 3789608f60fe94e4a8ef9e74f8acc4e6, type: 3}
-  _spawnRateEnemy: 1.5
+  _spawnRateEnemy: 2
 --- !u!4 &1722563963
 Transform:
   m_ObjectHideFlags: 0
