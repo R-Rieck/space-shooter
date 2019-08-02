@@ -19,15 +19,15 @@ public class UiManager : MonoBehaviour
     [SerializeField]
     private Sprite[] _liveImages;
 
-    private MainGame _mainGame;
+    private GameManager _gameManager;
 
     void Start()
     {
-        _mainGame = GameObject.Find("MainGame").GetComponent<MainGame>();
+        _gameManager = GameObject.Find("MainGame").GetComponent<GameManager>();
 
         UpdateScore(0);
 
-        if (_mainGame == null)
+        if (_gameManager == null)
             Debug.Log("Maingame is null and couldnt be found");
     }
 
@@ -43,7 +43,7 @@ public class UiManager : MonoBehaviour
 
     void GameOver()
     {
-        _mainGame.SetGameOver();
+        _gameManager.SetGameOver();
         _restartText.gameObject.SetActive(true);
         StartCoroutine(FlickerGameOverText());
     }

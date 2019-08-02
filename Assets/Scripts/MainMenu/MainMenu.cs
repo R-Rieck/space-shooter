@@ -3,11 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private MainGame _mainGameFunctionalities;
+    private GameManager _gameManager;
 
-    void Start(){
-        _mainGameFunctionalities = new MainGame();
-    }
+    private void Start() => _gameManager = new GameManager(); 
     public void StartGame() => SceneManager.LoadScene(1);
     public void Options() => SceneManager.LoadScene(3);
     public void Highscores() => SceneManager.LoadScene(2);
