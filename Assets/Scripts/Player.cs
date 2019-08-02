@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private float _canFire = 0f;
     private Vector3 _direction;
     private int DamageIndicatorTemp;
+    private int _scoreTemp = 200;
 
     [SerializeField]
     private float _moveSpeed = 10f;
@@ -33,8 +34,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _score = 0;
 
+    
+
     private SpawnBehaviour _spawnBehaviour;
     private UiManager _uiManager;
+    private GameManager _gameManager;
 
     public AudioSource _laserShot;
     public AudioSource _powerUpSound;
@@ -44,6 +48,7 @@ public class Player : MonoBehaviour
     {
         _spawnBehaviour = GameObject.Find("SpawnManager").GetComponent<SpawnBehaviour>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UiManager>();
+        _gameManager = GameObject.Find("MainGame").GetComponent<GameManager>();
 
         DamageIndicatorTemp = Random.Range(0, 3);
     }
@@ -138,6 +143,12 @@ public class Player : MonoBehaviour
     {
         _score += val;
         _uiManager.UpdateScore(_score);
+
+        if(_score > _scoreTemp)
+        {
+            _scoreTemp += 500;
+            _gameManager.IncreaseDifficulty();
+        }
     }
 
 

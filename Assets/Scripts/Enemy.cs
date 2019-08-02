@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]
-    private float _movementSpeed;
+
+    public float _movementSpeed;
+
     public GameObject DestroyAnim;
 
     private bool _entered = true;
@@ -15,7 +16,7 @@ public class Enemy : MonoBehaviour
     private Player _player;
     private Animator _destroyAnimation;
 
-    
+
     private SpriteRenderer _spriteRenderer;
 
     void Start()
@@ -25,9 +26,6 @@ public class Enemy : MonoBehaviour
         _player = GameObject.Find("Player").GetComponent<Player>();
         _destroyAnimation = gameObject.GetComponent<Animator>();
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-
-        if (_player == null || _destroyAnimation == null)
-            Debug.Log($"the given object {_player} or {_destroyAnimation} is null");
     }
 
     void Update()
@@ -37,7 +35,6 @@ public class Enemy : MonoBehaviour
         if (transform.position.y <= -6f)
             Destroy(gameObject);
     }
-
     void OnTriggerEnter2D(Collider2D collider)
     {
 
@@ -62,7 +59,12 @@ public class Enemy : MonoBehaviour
             _player.AddToScore(5);
             _life -= collider.gameObject.GetComponent<Bullet>().Damage;
         }
+    }
 
+    public void SetMovementSpeed(float movementSpeed) => _movementSpeed = movementSpeed;
 
+    public void IncreaseMovementSpeed(float adjustment)
+    {
+        if (_movementSpeed < 4f) _movementSpeed += adjustment;
     }
 }

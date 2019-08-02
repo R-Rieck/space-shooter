@@ -8,6 +8,16 @@ public class GameManager : MonoBehaviour
     public GameObject PauseMenu;
     private bool isPaused = false;
 
+    public Enemy _enemy;
+    private SpawnBehaviour _spawnManager;
+
+    void Start()
+    {
+        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnBehaviour>();
+        _enemy.SetMovementSpeed(1);
+    }
+
+
     void Update()
     {
         GetPauseMenuActions();
@@ -43,6 +53,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         PauseMenu.SetActive(false);
         isPaused = false;
+    }
+
+    public void IncreaseDifficulty()
+    {
+        _enemy.IncreaseMovementSpeed(0.5f);
+        _spawnManager.IncreaseSpawnRate(0.1f);
     }
 
     public void Menu() => SceneManager.LoadScene(0);

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnBehaviour : MonoBehaviour
@@ -12,10 +11,12 @@ public class SpawnBehaviour : MonoBehaviour
     public GameObject EnemyContainer;
     public GameObject[] powerUps;
     private bool _isPlayerAlive = true;
+    [SerializeField]
+    private float _spawnRateEnemy = 1.5f;
    
     void Start()
     {
-        StartCoroutine(SpawnEnemy(1.5f));
+        StartCoroutine(SpawnEnemy());
         StartCoroutine(SpawnRandomPowerUp(Random.Range(20,30)));
     }
 
@@ -29,13 +30,21 @@ public class SpawnBehaviour : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnEnemy(float waitTime)
+    IEnumerator SpawnEnemy()
     {
         while (_isPlayerAlive)
         {
             var newEnemy = Instantiate(Enemy);
             newEnemy.transform.parent = EnemyContainer.transform;
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(_spawnRateEnemy);
+        }
+    }
+
+    internal void IncreaseSpawnRate(float increaseValue)
+    {
+        if(_spawnRateEnemy > 1f)
+        {
+            _spawnRateEnemy -= increaseValue;
         }
     }
 

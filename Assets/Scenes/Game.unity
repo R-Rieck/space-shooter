@@ -1805,10 +1805,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1564897972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1544f7c602c1d2e41b87610d0d067032, type: 3}
+  m_Script: {fileID: 11500000, guid: c7fb3823b77c16b4883a673f18720cf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenu: {fileID: 542564484}
+  _enemy: {fileID: 1129738342749126826, guid: 40ee2e2aaa45ad04496f007d3a0ccd83, type: 3}
 --- !u!4 &1564897974
 Transform:
   m_ObjectHideFlags: 0
@@ -1964,6 +1965,7 @@ MonoBehaviour:
   - {fileID: 4358381800991991770, guid: 296eba7c6762d2a4f9f147db02d752aa, type: 3}
   - {fileID: 1119102119523011750, guid: 51fc252c0527fed46bfef76c26a7018f, type: 3}
   - {fileID: 4136861002810596666, guid: 3789608f60fe94e4a8ef9e74f8acc4e6, type: 3}
+  _spawnRateEnemy: 1.5
 --- !u!4 &1722563963
 Transform:
   m_ObjectHideFlags: 0
@@ -2434,9 +2436,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07cd59bf02412af4cbcf3471076ba186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 10
+  _moveSpeed: 12
   _life: 3
-  _fireRate: 0.36
+  _fireRate: 0.5
   _tripleShotIsEnabled: 0
   _speedBoostIsEnabled: 0
   _shieldIsEnabled: 0
