@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class UiManager : MonoBehaviour
 {
     public Text _scoreText;
-
-    public Text _gameOverScreen;
+    public InputField nameInput;
+    public GameObject _gameOverScreen;
     public Text _restartText;
 
     private int _score = 0;
@@ -20,10 +20,13 @@ public class UiManager : MonoBehaviour
     private Sprite[] _liveImages;
 
     private GameManager _gameManager;
+    private HighscoreBehaviour _highscoreBehaviour;
+
 
     void Start()
     {
         _gameManager = GameObject.Find("MainGame").GetComponent<GameManager>();
+        _highscoreBehaviour = new HighscoreBehaviour();
 
         UpdateScore(0);
 
@@ -31,9 +34,13 @@ public class UiManager : MonoBehaviour
             Debug.Log("Maingame is null and couldnt be found");
     }
 
-    public void UpdateScore (int score) => _scoreText.text = "Score: " + score;
+    public void UpdateScore(int score)
+    {
+        _score = score;
+        _scoreText.text = "Score: " + _score;
+    }
 
-    public void UpdateLives (int live)
+    public void UpdateLives(int live)
     {
         _currentLiveDisplay.sprite = _liveImages[live];
 
@@ -41,23 +48,21 @@ public class UiManager : MonoBehaviour
             GameOver();
     }
 
+    public void SaveAndBackToMenu()
+    {
+        _highscoreBehaviour.SetHighscore(_score, nameInput.text);
+        SceneManager.LoadScene(0);
+    }
+
+    public void SaveAndRestart()
+    {
+        _highscoreBehaviour.SetHighscore(_score, nameInput.text);
+        SceneManager.LoadScene(1);
+    }
+
     void GameOver()
     {
         _gameManager.SetGameOver();
-        _restartText.gameObject.SetActive(true);
-        StartCoroutine(FlickerGameOverText());
-    }
-
-    IEnumerator FlickerGameOverText()
-    {
-        
-        while (true)
-        {
-            _gameOverScreen.gameObject.SetActive(true);
-            yield return new WaitForSeconds(0.2f);
-            _gameOverScreen.gameObject.SetActive(false);
-            yield return new WaitForSeconds(0.2f);
-        }
-        
+        _gameOverScreen.SetActive(true);
     }
 }
