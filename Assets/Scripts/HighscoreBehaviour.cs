@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class HighscoreBehaviour : MonoBehaviour
