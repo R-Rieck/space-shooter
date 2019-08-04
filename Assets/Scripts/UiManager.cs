@@ -50,6 +50,7 @@ public class UiManager : MonoBehaviour
 
     public void SaveAndBackToMenu()
     {
+        var test = _highscoreBehaviour.GetHighscore();
         _highscoreBehaviour.SetHighscore(_score, nameInput.text);
         SceneManager.LoadScene(0);
     }

@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         GetPauseMenuActions();
-        if (_gameOver && Input.GetKey(KeyCode.F))
-            SceneManager.LoadScene(1);
     }
 
     void GetPauseMenuActions()

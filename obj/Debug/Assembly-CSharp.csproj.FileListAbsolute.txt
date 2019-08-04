@@ -267,3 +267,7 @@ C:\Users\ronri\staging-area\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.c
 C:\Users\ronri\staging-area\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\ronri\staging-area\obj\Debug\Assembly-CSharp.dll
 C:\Users\ronri\staging-area\obj\Debug\Assembly-CSharp.pdb
+C:\Users\ronri\Documents\GitHub\space-shooter\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\ronri\Documents\GitHub\space-shooter\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
+C:\Users\ronri\Documents\GitHub\space-shooter\obj\Debug\Assembly-CSharp.dll
+C:\Users\ronri\Documents\GitHub\space-shooter\obj\Debug\Assembly-CSharp.pdb
