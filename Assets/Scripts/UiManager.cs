@@ -23,15 +23,17 @@ public class UiManager : MonoBehaviour
     private HighscoreBehaviour _highscoreBehaviour;
 
 
-    void Start()
+    void Awake()
     {
         _gameManager = GameObject.Find("MainGame").GetComponent<GameManager>();
-        _highscoreBehaviour = new HighscoreBehaviour();
+        _highscoreBehaviour = GameObject.Find("MainGame").GetComponent<HighscoreBehaviour>();
 
         UpdateScore(0);
 
         if (_gameManager == null)
             Debug.Log("Maingame is null and couldnt be found");
+        if (_highscoreBehaviour == null)
+            Debug.Log("highscoreinstance is null and couldnt be found");
     }
 
     public void UpdateScore(int score)
@@ -50,7 +52,6 @@ public class UiManager : MonoBehaviour
 
     public void SaveAndBackToMenu()
     {
-        var test = _highscoreBehaviour.GetHighscore();
         _highscoreBehaviour.SetHighscore(_score, nameInput.text);
         SceneManager.LoadScene(0);
     }

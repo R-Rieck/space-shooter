@@ -1,57 +1,39 @@
-﻿using Mono.Data.Sqlite;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class HighscoreBehaviour : MonoBehaviour
 {
-    IDbConnection dbconn;
+    void Start()
+    {
+        if (!PlayerPrefs.HasKey("Highscorelist"))
+            PlayerPrefs.SetString("Highscorelist", "{}");
+    }
 
     public void SetHighscore(int score, string name)
     {
-        dbconn = (IDbConnection)new SqliteConnection("URI=file:" + Application.dataPath + "/Database.db");
-        dbconn.Open(); 
+        var highscoreList = GetHighscore();
 
-        IDbCommand dbcmd = dbconn.CreateCommand();
-        dbcmd.CommandText = $"Insert Into Highscore (Name,Score) Values('{name}',{score})";
-        dbcmd.ExecuteNonQuery();
 
-        //close Connection
-        dbcmd.Dispose();
-        dbcmd = null;
-        dbconn.Close();
-        dbconn = null;
+        highscoreList.Add(new HighscoreModel() { Name = name, Score = score });
+        var highscoreListmodel = new HighscoreListModel() { HighscoreList = highscoreList };
+
+        var listToJson = JsonUtility.ToJson(highscoreListmodel);
+        PlayerPrefs.SetString("Highscorelist", listToJson);
+        PlayerPrefs.Save();
+
     }
 
     public List<HighscoreModel> GetHighscore()
     {
-        var highscores = new List<HighscoreModel>();
-
-        dbconn = (IDbConnection)new SqliteConnection("URI=file:" + Application.dataPath + "/Database.db");
-        dbconn.Open();
-
-        IDbCommand dbcmd = dbconn.CreateCommand();
-        dbcmd.CommandText = $"Select Name, Score From Highscore";
-
-        IDataReader reader = dbcmd.ExecuteReader();
-        while (reader.Read())
-        {
-            highscores.Add(new HighscoreModel()
-            {
-                Name = reader.GetString(0),
-                Score = reader.GetInt32(1)
-            });
-        }
-
-        reader.Close();
-        reader = null;
-        dbcmd.Dispose();
-        dbcmd = null;
-        dbconn.Close();
-        dbconn = null;
+        var list = PlayerPrefs.GetString("Highscorelist");
+        Debug.Log("playerprefs list ist null");
+        var result = JsonUtility.FromJson<HighscoreListModel>(list);
+        Debug.Log("resultdingeslist ist null");
 
 
-        return highscores;
+        if (result.HighscoreList == null)
+            return new List<HighscoreModel>();
+
+        return result.HighscoreList;
     }
 }

@@ -8,13 +8,14 @@ public class NewBehaviourScript : MonoBehaviour
 {
     Transform _tableDataContainer;
     Transform _tableData;
-    HighscoreBehaviour _data = new HighscoreBehaviour();
+    HighscoreBehaviour _data; 
 
     void Start()
     {
         _tableData = GameObject.Find("TableData").GetComponent<RectTransform>();
         _tableDataContainer = GameObject.Find("TableDataContainer").GetComponent<RectTransform>();
         _tableDataContainer.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -50);
+        _data = new HighscoreBehaviour();
 
         InitData(_data.GetHighscore().OrderByDescending(x => x.Score).ToList());
         _tableData.gameObject.SetActive(false);
